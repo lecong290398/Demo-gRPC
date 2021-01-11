@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestGrpcService.Protos";
+import "google/protobuf/timestamp.proto";
+
+
+package userLogin;
+// The greeting service definition.
+service UserLogin {
+  // Sends a greeting
+  rpc LoginSrv (messageLoginRequest) returns (messageLoginRely);
+  rpc LogoutSrv (messageLogoutRequest) returns (messageLogoutRely);
+  rpc RefreshTokenSrv (messageTokenRely) returns (messageRefreshRequest);
+}
+
+message messageLoginRequest {
+   string username = 1;
+   string password = 2;
+   string device = 3;
+}
+
+message messageLoginRely {
+   string id = 1;
+   string username = 2;
+   string fullname = 3;
+   messageTokenRely Tokens = 4;
+ }
+
+message messageTokenRely{
+	string accessToken = 1;
+	string  refreshToken  = 2;
+	double expiresRefreshToken = 3;
+}
+
+message messageLogoutRequest
+{
+   string username = 1;
+   string device = 2;
+}
+
+message messageLogoutRely
+{
+   string username = 1;
+   bool isLogout = 2;
+}
+
+message messageRefreshRequest{
+	string accessToken = 1;
+	string refreshToken = 2;
+}
+

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestGrpcService.Protos";
+
+import "Protos/userLogin.proto";
+
+package ptUsers;
+
+service PtUsers {
+  rpc LoadListUsersSrv (messageListUserRely) returns (messageListUserRely);
+	
+}
+
+message messageListUserRely{
+	messageLoginRely UserModel =  1;
+	string stt = 2;
+}
+   
